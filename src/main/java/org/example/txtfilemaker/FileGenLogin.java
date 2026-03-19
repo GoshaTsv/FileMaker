@@ -45,7 +45,7 @@ public class FileGenLogin {
         var br = new BufferedReader(new FileReader(file));
         var stringBuilder = new StringBuilder();
         while(br.ready() && (line = br.readLine()) != null){
-            stringBuilder.append(line);
+            stringBuilder.append(line + "\n");
         }
         String filename = file.getName();
         br.close();
