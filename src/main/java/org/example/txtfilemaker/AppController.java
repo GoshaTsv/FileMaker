@@ -10,6 +10,9 @@ import javafx.stage.FileChooser;
 import javafx.stage.Window;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Objects;
 
 public class AppController {
     public TextField fileTypeField;
@@ -41,7 +44,7 @@ public class AppController {
         fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
     }
 
-    public void chooseFilePath(ActionEvent actionEvent) {
+    public void chooseFilePath(ActionEvent actionEvent) throws IOException {
 
         Window stage = fileTypeField.getScene().getWindow();
 
@@ -76,6 +79,12 @@ public class AppController {
             statusLabel.setText("Выбран файл: " + file.getAbsolutePath());
 
             fileChooser.setInitialDirectory(file.getParentFile());
+            ArrayList<String> list = Objects.requireNonNullElse(FileGenLogin.readFile(file), new ArrayList<>(3));
+            fileTypeField.setText(list.get(2));
+            fileNameField.setText(list.get(1));
+            fileContentField.setText(list.get(0));
+
+
         }
     }
     private void showAlert(String title, String message) {
