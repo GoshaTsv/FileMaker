@@ -35,6 +35,9 @@ public class AppController {
         boolean status = FileGenLogin.genFile(sfile, fileContentField.getText());
         if (status){
             statusLabel.setText("Файл успешно создан в " + sfile.getAbsolutePath());
+            fileTypeField.setText("");
+            fileContentField.setText("");
+            fileNameField.setText("");
         }
         else{
             statusLabel.setText("Файл не получилось создать.");
